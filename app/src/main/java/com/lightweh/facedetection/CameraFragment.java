@@ -7,9 +7,13 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -39,6 +43,7 @@ import android.widget.Toast;
 import com.lightweh.dlib.FaceDet;
 import com.lightweh.dlib.VisionDetRet;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -621,7 +626,21 @@ public class CameraFragment extends Fragment {
             long startTime = System.currentTimeMillis();
             List<VisionDetRet> results;
             results = mFaceDet.detect(bp[0]);
+            Bitmap bmOverlay;
+            if(results.size() != 0)
+           {
+               int top = results.get(0).getTop();
+               int bot = results.get(0).getBottom();
+               int left = results.get(0).getLeft();
+               int right = results.get(0).getRight();
+               int Height = bot - top;
+               int Weight = right - left;
+               bmOverlay = Bitmap.createBitmap(bp[0],left,top,Weight,Height);
+
+           }
+
             long endTime = System.currentTimeMillis();
+            Log.d(TAG, "result "+ results);
             Log.d(TAG, "Time cost: " + String.valueOf((endTime - startTime) / 1000f) + " sec");
 
             return results;
