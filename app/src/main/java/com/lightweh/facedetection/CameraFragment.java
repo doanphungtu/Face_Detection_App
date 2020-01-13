@@ -635,8 +635,11 @@ public class CameraFragment extends Fragment {
                int right = results.get(0).getRight();
                int Height = bot - top;
                int Weight = right - left;
-               bmOverlay = Bitmap.createBitmap(bp[0],left,top,Weight,Height);
-
+               try {
+                   bmOverlay = Bitmap.createBitmap(bp[0], left, top, Weight, Height);
+               }catch (Exception e){
+                   Log.d(TAG,"error " + e);
+               }
            }
 
             long endTime = System.currentTimeMillis();
