@@ -1,0 +1,6 @@
+H:/Face_Detection_App/app/.cxx/cmake/release/x86/CMakeFiles/native-lib.dir
+H:/Face_Detection_App/app/.cxx/cmake/release/x86/CMakeFiles/edit_cache.dir
+H:/Face_Detection_App/app/.cxx/cmake/release/x86/CMakeFiles/rebuild_cache.dir
+H:/Face_Detection_App/app/.cxx/cmake/release/x86/dlib_build/CMakeFiles/dlib.dir
+H:/Face_Detection_App/app/.cxx/cmake/release/x86/dlib_build/CMakeFiles/edit_cache.dir
+H:/Face_Detection_App/app/.cxx/cmake/release/x86/dlib_build/CMakeFiles/rebuild_cache.dir

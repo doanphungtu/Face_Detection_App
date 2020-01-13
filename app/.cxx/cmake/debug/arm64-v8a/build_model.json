@@ -1,0 +1,73 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "H:\\Face_Detection_App",
+      "sdkFolder": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "H:\\Face_Detection_App\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "H:\\Face_Detection_App\\app",
+      "makeFile": "H:\\Face_Detection_App\\app\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "H:\\Face_Detection_App\\.cxx",
+      "cxxFolder": "H:\\Face_Detection_App\\app\\.cxx",
+      "ndkFolder": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\ndk-bundle",
+      "ndkVersion": "20.0.5594570",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [
+      "-DCMAKE_BUILD_TYPE\u003dRelease"
+    ],
+    "cFlagList": [],
+    "cppFlagsList": [
+      "-std\u003dc++11 -frtti -fexceptions"
+    ],
+    "variantName": "debug",
+    "soFolder": "H:\\Face_Detection_App\\app\\build\\intermediates\\cmake\\debug\\lib",
+    "objFolder": "H:\\Face_Detection_App\\app\\build\\intermediates\\cmake\\debug\\obj",
+    "jsonFolder": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug",
+    "gradleBuildOutputFolder": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARM64_V8A",
+      "ARMEABI_V7A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARM64_V8A",
+  "abiPlatformVersion": 21,
+  "cxxBuildFolder": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug\\arm64-v8a",
+  "jsonFile": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug\\arm64-v8a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a",
+  "objFolder": "H:\\Face_Detection_App\\app\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a",
+  "buildCommandFile": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug\\arm64-v8a\\build_command.txt",
+  "buildOutputFile": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug\\arm64-v8a\\build_output.txt",
+  "modelOutputFile": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug\\arm64-v8a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a\\CMakeLists.txt",
+    "toolchainWrapperFile": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a\\build_generation_state.json",
+    "cacheKeyFile": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "H:\\Face_Detection_App\\app\\.cxx\\cxx\\debug\\arm64-v8a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug\\arm64-v8a\\json_generation_record.json",
+  "compileCommandsJsonFile": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\debug\\arm64-v8a\\compile_commands.json"
+}

@@ -1,0 +1,28 @@
+{
+  "buildFiles": [
+    "H:\\Face_Detection_App\\app\\CMakeLists.txt",
+    "H:\\Face_Detection_App\\app\\src\\main\\cpp\\dlib\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build H:\\Face_Detection_App\\app\\.cxx\\cmake\\release\\arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "libopencv_java3-Release-arm64-v8a": {
+      "artifactName": "libopencv_java3",
+      "abi": "arm64-v8a",
+      "output": "H:\\Face_Detection_App\\app\\src\\main\\cpp\\opencv\\libs\\arm64-v8a\\libopencv_java3.so"
+    },
+    "native-lib-Release-arm64-v8a": {
+      "artifactName": "native-lib",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build H:\\Face_Detection_App\\app\\.cxx\\cmake\\release\\arm64-v8a --target native-lib",
+      "abi": "arm64-v8a",
+      "output": "H:\\Face_Detection_App\\app\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a\\libnative-lib.so"
+    },
+    "dlib-Release-arm64-v8a": {
+      "artifactName": "dlib",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build H:\\Face_Detection_App\\app\\.cxx\\cmake\\release\\arm64-v8a --target dlib",
+      "abi": "arm64-v8a",
+      "output": "H:\\Face_Detection_App\\app\\.cxx\\cmake\\release\\arm64-v8a\\dlib_build\\libdlib.a"
+    }
+  }
+}
