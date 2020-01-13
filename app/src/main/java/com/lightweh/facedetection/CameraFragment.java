@@ -639,6 +639,7 @@ public class CameraFragment extends Fragment {
                    bmOverlay = Bitmap.createBitmap(bp[0], left, top, Weight, Height);
                }catch (Exception e){
                    Log.d(TAG,"error " + e);
+                   Log.d(TAG,"error " + e);
                }
            }
 
