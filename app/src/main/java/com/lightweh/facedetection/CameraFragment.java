@@ -23,6 +23,7 @@ import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +31,7 @@ import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -43,7 +45,20 @@ import android.widget.Toast;
 import com.lightweh.dlib.FaceDet;
 import com.lightweh.dlib.VisionDetRet;
 
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -51,6 +66,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.HttpUrl;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 /**
@@ -111,7 +134,7 @@ public class CameraFragment extends Fragment {
         public void onSurfaceTextureUpdated(SurfaceTexture texture) {
             if (!mIsDetecting) {
                 Bitmap bp = mTextureView.getBitmap();
-                bp = Bitmap.createBitmap(bp, 0, 0, bp.getWidth(), bp.getHeight(), mTextureView.getTransform(null), true );
+                bp = Bitmap.createBitmap(bp, 0, 0, bp.getWidth(), bp.getHeight(), mTextureView.getTransform(null), true);
 
                 new detectAsync().execute(bp);
             }
@@ -610,7 +633,6 @@ public class CameraFragment extends Fragment {
     }
 
 
-
     private class detectAsync extends AsyncTask<Bitmap, Void, List<VisionDetRet>> {
 
         @Override
@@ -627,24 +649,67 @@ public class CameraFragment extends Fragment {
             List<VisionDetRet> results;
             results = mFaceDet.detect(bp[0]);
             Bitmap bmOverlay;
-            if(results.size() != 0)
-           {
-               int top = results.get(0).getTop();
-               int bot = results.get(0).getBottom();
-               int left = results.get(0).getLeft();
-               int right = results.get(0).getRight();
-               int Height = bot - top;
-               int Weight = right - left;
-               try {
-                   bmOverlay = Bitmap.createBitmap(bp[0], left, top, Weight, Height);
-               }catch (Exception e){
-                   Log.d(TAG,"error " + e);
-                   Log.d(TAG,"error " + e);
-               }
-           }
+            if (results.size() != 0) {
+                int top = results.get(0).getTop();
+                int bot = results.get(0).getBottom();
+                int left = results.get(0).getLeft();
+                int right = results.get(0).getRight();
+                int Height = bot - top;
+                int Weight = right - left;
+                try {
+                    bmOverlay = Bitmap.createBitmap(bp[0], left, top, Weight, Height);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bmOverlay.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    try {
+                        File f = new File(getContext().getCacheDir(),"test.jpg");
+                        f.createNewFile();
+                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                        bmOverlay.compress(Bitmap.CompressFormat.JPEG, 0 /*ignored for PNG*/, bos);
+                        byte[] bitmapdata = bos.toByteArray();
+                        FileOutputStream fos = null;
+                        try {
+                            fos = new FileOutputStream(f);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fos.write(bitmapdata);
+                            fos.flush();
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        RequestBody req = new MultipartBody.Builder()
+                                .setType(MultipartBody.FORM)
+                                .addFormDataPart("image", f.getName(),
+                                        RequestBody.create(MediaType.parse("image/*"), byteArray))
+                                .build();
+                        Request request = new Request.Builder()
+                                .url("http://4e48ec3e.ngrok.io/api/upload")
+                                .post(req)
+                                .build();
+                        try {
+                                OkHttpClient client = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS).build();
+                            Response response = client.newCall(request).execute();
+                            Log.d(TAG, "URL" + response.body().string());
+
+                        } catch (Exception ex) {
+                            Log.d(TAG, "err : " + ex.getMessage());
+
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "Error: " + e.getLocalizedMessage());
+                    }
+                } catch (Exception e) {
+                    Log.d(TAG, "error " + e);
+                }
+            }
 
             long endTime = System.currentTimeMillis();
-            Log.d(TAG, "result "+ results);
+            Log.d(TAG, "result " + results);
             Log.d(TAG, "Time cost: " + String.valueOf((endTime - startTime) / 1000f) + " sec");
 
             return results;

@@ -62,7 +62,7 @@ public class BoundingBoxView extends SurfaceView implements SurfaceHolder.Callba
 
         Canvas canvas = mSurfaceHolder.lockCanvas();
 
-        //清除掉上一次的画框。
+
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
         canvas.drawColor(Color.TRANSPARENT);
